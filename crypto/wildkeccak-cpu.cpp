@@ -14,7 +14,8 @@
 #include <string.h>
 
 #ifdef _MSC_VER
-#include <emmintrin.h>
+//#include <emmintrin.h>
+#include "sse2neon.h"
 #include <openssl/opensslv.h>
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 #include "compat/bignum_ssl10.hpp"
@@ -23,12 +24,15 @@
 #endif
 #include "int128_c.h"
 #else
-#include <x86intrin.h>
+//#include <x86intrin.h>
+#include "sse2neon.h"
 #endif
 
 #include <miner.h>
 
 #include "xmr-rpc.h"
+
+#define _MM_HINT_T1 2
 
 extern uint64_t* pscratchpad_buff;
 
@@ -58,7 +62,7 @@ static inline int fls64(uint64_t x)
 	* value is written to set it to the same as before.
 	*/
 	register long bitpos = -1;
-	asm("bsrq %1,%0" : "+r" (bitpos) : "rm" (x));
+	//asm("bsrq %1,%0" : "+r" (bitpos) : "rm" (x));
 	return bitpos + 1;
 #endif
 }

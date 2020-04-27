@@ -72,7 +72,7 @@
 //#define HAVE_SSSE3
 #define HAVE_SSE41
 #else
-# error "This code requires at least SSE 4.1"
+//# error "This code requires at least SSE 4.1"
 #endif
 
 #endif

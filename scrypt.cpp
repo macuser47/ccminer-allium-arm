@@ -42,7 +42,8 @@ using namespace Concurrency;
 #include <stdint.h>
 #include <string.h>
 
-#include <emmintrin.h>
+//#include <emmintrin.h>
+#include "sse2neon.h"
 #ifndef __APPLE__
 #include <malloc.h>
 #endif
@@ -817,7 +818,7 @@ int scanhash_scrypt(int thr_id, struct work *work, uint32_t max_nonce, unsigned 
 				}
 #endif
 			}
-			else /* sha_multithreaded */
+			else 
 			{
 				for (int k = 0; k < throughput/4; k++) {
 					for (int l = 0; l < 8; l++)
@@ -889,7 +890,7 @@ int scanhash_scrypt(int thr_id, struct work *work, uint32_t max_nonce, unsigned 
 				}
 			}
 		}
-		else /* sha_on_cpu */
+		else
 		{
 			n += throughput;
 

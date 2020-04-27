@@ -25,7 +25,8 @@
 #include <intrin.h>
 #endif
 
-#include <emmintrin.h>
+//#include <emmintrin.h>
+#include "sse2neon.h"
 #if defined(HAVE_SSSE3)
 #include <tmmintrin.h>
 #endif
