@@ -1,3 +1,27 @@
+# ccminer-allium-arm
+This is a port of ccminer-allium to work on arm systems with CUDA-enabled graphics.
+
+Tested working on the Nvidia Jetson-TX1 (130kh/s) with CUDA 10.0.
+
+Please note this port is full of horrible hacks that
+* Completely break certain mining algos. I don't think scrypt works at all anymore. The only tested working algo is allium.
+* Rebind Intel SSE2 instructions to ARM Neon, at a pretty bad performance penalty
+* Employ some aggressive removal of non-portable code
+
+# Building instructions
+
+Make sure you're on the `windows` branch, even if you're on linux.
+ccminer-allium only implemented the allium port on this branch.
+
+Install dependencies. See original README below.
+
+```
+./autogen.sh
+./configure
+make -j4
+```
+
+## Original project readme
 # ccminer
 
 Based on Christian Buchner's &amp; Christian H.'s CUDA project, no more active on github since 2014.
